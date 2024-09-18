@@ -56,7 +56,7 @@ pipeline {
 
         stage("Update Jenkins file with new Build Number") {
            environment {
-                GIT_REPO_NAME = "Django-todo"
+                GIT_REPO_NAME = "TextUtils-CI-CD"
                 GIT_USER_NAME = "abhi-shek-2"
             }
             steps {  
