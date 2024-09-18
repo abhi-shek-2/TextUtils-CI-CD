@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: todo
-        image: ranaabhi02/TextUtils:v1
+        image: ranaabhi02/textutils:v1
         ports:
         - containerPort: 8000
