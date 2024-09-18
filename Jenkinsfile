@@ -11,14 +11,14 @@ pipeline {
         stage('Checkout'){
            steps {
                 git credentialsId: 'Github_LOGIN', 
-                url: 'https://github.com/abhi-shek-2/TextUtils-CI-CD/',
+                url: 'https://github.com/abhi-shek-2/textutils-CI-CD/',
                 branch: 'main'
            }
         }
 
         stage('Build and Push Docker Image') {
             environment {
-                DOCKER_IMAGE = "ranaabhi02/TextUtils:${BUILD_NUMBER}"
+                DOCKER_IMAGE = "ranaabhi02/textutils:${BUILD_NUMBER}"
                 REGISTRY_CREDENTIALS = credentials('docker-cred')
             }
             steps {
@@ -45,7 +45,7 @@ pipeline {
                         git config user.name "Abhishek Rana"
                         BUILD_NUMBER=${BUILD_NUMBER}
                         cat deploy/deploy.yaml
-                        sed -i "s/TextUtils:v1/TextUtils:${BUILD_NUMBER}/g" deploy/deploy.yaml
+                        sed -i "s/textutils:v1/textutils:${BUILD_NUMBER}/g" deploy/deploy.yaml
                         git add deploy/deploy.yaml
                         git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                         git push https://${GIT_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
@@ -66,7 +66,7 @@ pipeline {
                         git config user.name "Abhishek Rana"
                         BUILD_NUMBER=${BUILD_NUMBER}
                         cat Jenkinsfile
-                        sed -i "s/TextUtils:v1/TextUtils:${BUILD_NUMBER}/g" Jenkinsfile
+                        sed -i "s/textutils:v1/textutils:${BUILD_NUMBER}/g" Jenkinsfile
                         git add Jenkinsfile
                         git commit -m "Update Jenkinsfile file  to version ${BUILD_NUMBER}"
                         git push https://${GIT_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
